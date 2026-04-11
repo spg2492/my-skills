@@ -1,0 +1,353 @@
+{
+  "skill_name": "competitive-analysis",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Do an architectural and competitive deep-dive on Qualified PiperX vs Drift. Seed URLs: https://www.qualified.com/platform, https://www.drift.com/platform. I need this for a CPO presentation next week.",
+      "expected_output": "A full 7-section deep product analysis report covering both Qualified and Drift. An Executive Summary of 4-8 bullets appears before Section 1. Section 1 includes ICP and Anti-ICP analysis for both products. Section 2 uses the 3-layer framework with evidence classification (verified/inferred/strategic interpretation) applied to architectural claims. Section 3 walkthrough notes which steps are documented vs. inferred, with an Agent Operating Model sub-section for Qualified PiperX. Feature matrix covers both companies. Section 5 migration ratings are anchored to observable dependencies. Section 6 roadmap threats are classified by signal type. Citations Appendix is populated.",
+      "assertions": [
+        {
+          "name": "all_7_sections_present",
+          "description": "The report contains all 7 numbered sections: (1) Strategic Overview & Archetype, (2) Architectural Blueprint & AI Governance, (3) How It Works, (4) Scalable Feature Matrix, (5) Switching Costs & Integration Tax, (6) Roadmap Threat & PM Recommendation, (7) Citations Appendix",
+          "type": "structural"
+        },
+        {
+          "name": "executive_summary_always_present",
+          "description": "An Executive Summary of 4-8 bullets appears before Section 1. It covers: core takeaway, where each company wins (one phrase per company), biggest strategic risk with signal type noted, and a recommendation.",
+          "type": "structural"
+        },
+        {
+          "name": "citations_appendix_populated",
+          "description": "Section 7 (Citations Appendix) exists and contains at least one URL per company (Qualified and Drift), with source types noted",
+          "type": "structural"
+        },
+        {
+          "name": "feature_matrix_covers_all_companies",
+          "description": "The feature comparison matrix in Section 4 contains columns for both Qualified and Drift",
+          "type": "structural"
+        },
+        {
+          "name": "fact_inference_separation",
+          "description": "Section 2 and Section 3 distinguish between verified documented facts and inferred architectural behaviors. Claims about internal implementation (e.g., exact CRM object behavior, model internals, exact API sequences) use hedged language ('appears to', 'based on documented behavior', 'inferred') rather than stating them as verified facts. The report does not present inference as documentation.",
+          "type": "quality"
+        },
+        {
+          "name": "no_overclaimed_internal_architecture",
+          "description": "The report does not state specific internal implementation details — such as exact Salesforce custom object names or schemas, internal AI model identities, exact data pipeline sequences, or specific API field names — as verified facts without a cited source. Where such details are not publicly documented, the report uses 'Proprietary / Not Publicly Disclosed' or explicitly frames the claim as inferred.",
+          "type": "quality"
+        },
+        {
+          "name": "evidence_calibration_on_sensitive_claims",
+          "description": "Sensitive claims — including compliance certifications (SOC 2, GDPR posture), training data privacy policies, exact pricing figures, and migration timeline estimates — are either sourced with a specific citation or appropriately hedged. No compliance or privacy claim is stated as fact based solely on vendor category norms or enterprise customer presence.",
+          "type": "quality"
+        },
+        {
+          "name": "executive_readability",
+          "description": "Each major section and company block in Section 2 leads with a Headline Takeaway (1-2 sentences stating the strategic 'so what') before the technical detail. The report is scannable: a CPO could extract the key implications without reading every sub-bullet.",
+          "type": "quality"
+        },
+        {
+          "name": "defensible_roadmap_threat",
+          "description": "Each roadmap threat in Section 6 is classified by signal type: [Shipped], [Announced], [Signal-based], or [Strategic Interpretation]. No threat is presented with higher confidence than its evidence warrants. The classification is explicit in the text, not implicit.",
+          "type": "quality"
+        },
+        {
+          "name": "agent_capability_model_coverage",
+          "description": "Qualified PiperX is positioned as an AI SDR agent. The report must explicitly name Piper's major capability surfaces (e.g., web chat, email, meetings, offers, nurture) as distinct items — not collapse them into 'pipeline generation' or 'conversion.' The report must describe how those capabilities connect into an operating loop, identify which are central vs. ancillary, and state the autonomy boundary (what Piper does autonomously vs. what requires human initiation or handoff). This appears as an 'Agent Operating Model' sub-section in Section 3.",
+          "type": "quality"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Run the PM competitive matrix for 6sense, Demandbase, and Bombora. Docs: https://6sense.com/platform/, https://www.demandbase.com/solutions/, https://bombora.com/product/. I specifically need depth on their AI architecture and how they handle intent data — including any governance or hallucination controls.",
+      "expected_output": "A 7-section deep product analysis report covering all three companies. An Executive Summary of 4-8 bullets appears before Section 1. Section 2 Layer 2 (Intelligence Layer / Scoring Engine) is especially detailed on intent data handling and AI governance. Note: this product category may warrant adapted layer names (Data Sourcing & Coverage / Scoring & Prediction Engine / Activation & Integration Layer). Governance claims (hallucination mitigation, training data policies) are clearly sourced or marked 'Proprietary / Not Publicly Disclosed' — not inferred from category norms. Feature matrix covers all three companies. Section 6 roadmap threats are signal-classified. Citations Appendix is populated with source types noted.",
+      "assertions": [
+        {
+          "name": "all_7_sections_present",
+          "description": "The report contains all 7 numbered sections",
+          "type": "structural"
+        },
+        {
+          "name": "executive_summary_always_present",
+          "description": "An Executive Summary of 4-8 bullets appears before Section 1, covering core takeaway, where each company wins, biggest strategic risk with signal type, and recommendation.",
+          "type": "structural"
+        },
+        {
+          "name": "citations_appendix_populated",
+          "description": "Section 7 (Citations Appendix) exists and contains URLs for all three companies — 6sense, Demandbase, and Bombora — with source types noted",
+          "type": "structural"
+        },
+        {
+          "name": "feature_matrix_covers_all_companies",
+          "description": "The feature comparison matrix in Section 4 contains columns for 6sense, Demandbase, and Bombora — all three",
+          "type": "structural"
+        },
+        {
+          "name": "fact_inference_separation",
+          "description": "Section 2 and Section 3 distinguish between verified documented facts and inferred architectural behaviors. Claims about internal AI architecture, intent data pipelines, and model training approaches use calibrated language unless directly sourced.",
+          "type": "quality"
+        },
+        {
+          "name": "no_overclaimed_internal_architecture",
+          "description": "The report does not state internal AI model details, exact data pipeline architectures, or specific proprietary scoring mechanisms as verified facts without a cited source. Where internals are not publicly documented, the report uses 'Proprietary / Not Publicly Disclosed' rather than inferring from product marketing.",
+          "type": "quality"
+        },
+        {
+          "name": "evidence_calibration_on_sensitive_claims",
+          "description": "AI governance claims — including hallucination mitigation mechanisms, training data policies, and compliance certifications — are either cited from official documentation or marked 'Proprietary / Not Publicly Disclosed'. The report does not assume governance posture from vendor category membership or enterprise customer lists.",
+          "type": "quality"
+        },
+        {
+          "name": "executive_readability",
+          "description": "Each company block in Section 2 leads with a Headline Takeaway. The report is structured so a reader can scan for strategic implications without reading every technical sub-bullet.",
+          "type": "quality"
+        },
+        {
+          "name": "defensible_roadmap_threat",
+          "description": "Each roadmap threat in Section 6 is classified by signal type ([Shipped], [Announced], [Signal-based], or [Strategic Interpretation]) with the classification explicit in the text.",
+          "type": "quality"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "How does Intercom actually work under the hood compared to Zendesk? No seed URLs — just use what you can find publicly. I'm especially focused on their AI governance approach and how hard it would be for one of our enterprise customers to migrate away from Zendesk.",
+      "expected_output": "A 7-section deep product analysis report for Intercom and Zendesk. An Executive Summary of 4-8 bullets appears before Section 1. The report acknowledges at the top that no seed URLs were provided and that architectural characterizations are based on public sources. Section 2 AI governance claims are appropriately hedged or marked 'Proprietary / Not Publicly Disclosed' rather than confidently asserted. Section 5 migration ratings are anchored to specific observable dependencies with no precise timeline stated without evidence. Citations Appendix is populated.",
+      "assertions": [
+        {
+          "name": "all_7_sections_present",
+          "description": "The report contains all 7 numbered sections",
+          "type": "structural"
+        },
+        {
+          "name": "executive_summary_always_present",
+          "description": "An Executive Summary of 4-8 bullets appears before Section 1, covering core takeaway, where each company wins, biggest strategic risk with signal type, and recommendation.",
+          "type": "structural"
+        },
+        {
+          "name": "citations_appendix_populated",
+          "description": "Section 7 (Citations Appendix) exists and contains URLs for both Intercom and Zendesk with source types noted",
+          "type": "structural"
+        },
+        {
+          "name": "feature_matrix_covers_all_companies",
+          "description": "The feature comparison matrix in Section 4 contains columns for both Intercom and Zendesk",
+          "type": "structural"
+        },
+        {
+          "name": "no_seed_urls_acknowledged",
+          "description": "The report acknowledges at the top that no seed URLs were provided and that all architectural findings are based on public web research, with a note that internal implementation details are characterized as inferences rather than verified facts",
+          "type": "structural"
+        },
+        {
+          "name": "fact_inference_separation",
+          "description": "Because no seed URLs were provided, Section 2 architectural claims use appropriately hedged language throughout. The report does not present inferred internal implementation details as documented facts. AI governance claims that are not publicly available are marked 'Proprietary / Not Publicly Disclosed' rather than assumed.",
+          "type": "quality"
+        },
+        {
+          "name": "no_overclaimed_internal_architecture",
+          "description": "Without seed URLs, the report avoids stating precise internal architecture details (e.g., exact routing logic, internal AI model choices, specific data schema elements) as verified facts. Internal architecture is characterized at the pattern level ('appears to use', 'based on documented product behavior') rather than the implementation level.",
+          "type": "quality"
+        },
+        {
+          "name": "evidence_calibration_on_sensitive_claims",
+          "description": "Migration effort estimates in Section 5 are accompanied by specific, named observable dependencies (e.g., 'depth of Zendesk ticket schema customization', 'API-dependent third-party integrations') rather than generic category reasoning or precise timeline figures without a source.",
+          "type": "quality"
+        },
+        {
+          "name": "executive_readability",
+          "description": "Each company block leads with a Headline Takeaway. The strategic implications of AI governance gaps and migration friction are surfaced upfront, before the technical detail.",
+          "type": "quality"
+        },
+        {
+          "name": "defensible_roadmap_threat",
+          "description": "Section 6 roadmap threats are classified by signal type with explicit labels. No threat drawn from public-only research is presented as [Verified] or [Announced] unless confirmed by an official source.",
+          "type": "quality"
+        },
+        {
+          "name": "agent_capability_model_coverage",
+          "description": "Intercom is positioned as an AI agent platform (Fin AI agent). The report must explicitly name Intercom Fin's major capability surfaces as distinct items and not collapse them into a generic 'support automation' characterization. The report must describe how those capabilities connect into an operating loop and state the autonomy boundary — what Fin handles autonomously vs. what routes to a human agent. This appears as an 'Agent Operating Model' sub-section in Section 3. If Zendesk has comparable AI agent capabilities, the same requirement applies.",
+          "type": "quality"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Do a competitive analysis memo on PathFactory ChatFactory vs Qualified PiperX for our CPO. No seed URLs — use what you can find publicly. Focus on how each product actually works architecturally and what the switching costs look like.",
+      "expected_output": "A 7-section deep product analysis report for PathFactory ChatFactory and Qualified PiperX based on public sources only. An Executive Summary of 4-8 bullets appears before Section 1. The report must not overclaim internal architectural details — e.g., it should not state exact Salesforce object schemas, internal LLM provider identities, specific training data policies, or exact CRM read/write behavior as verified facts. Section 2 governance claims that are not publicly documented must be marked 'Proprietary / Not Publicly Disclosed'. Section 5 migration estimates must be anchored in observable integration depth, not precise timelines. The key test of this eval: does the report read like a trustworthy brief a CPO could defend, or does it project false confidence on implementation details that aren't publicly known?",
+      "assertions": [
+        {
+          "name": "all_7_sections_present",
+          "description": "The report contains all 7 numbered sections",
+          "type": "structural"
+        },
+        {
+          "name": "executive_summary_always_present",
+          "description": "An Executive Summary of 4-8 bullets appears before Section 1, covering core takeaway, where each company wins, biggest strategic risk with signal type, and recommendation.",
+          "type": "structural"
+        },
+        {
+          "name": "citations_appendix_populated",
+          "description": "Section 7 (Citations Appendix) exists and contains URLs for both PathFactory and Qualified with source types noted",
+          "type": "structural"
+        },
+        {
+          "name": "feature_matrix_covers_all_companies",
+          "description": "The feature comparison matrix contains columns for both PathFactory ChatFactory and Qualified PiperX",
+          "type": "structural"
+        },
+        {
+          "name": "no_seed_urls_acknowledged",
+          "description": "The report acknowledges at the top that no seed URLs were provided and characterizes architectural findings accordingly",
+          "type": "structural"
+        },
+        {
+          "name": "fact_inference_separation",
+          "description": "Section 2 clearly distinguishes between what is documented (e.g., publicly announced features, published release notes) and what is inferred (e.g., internal routing logic, AI model internals, exact CRM integration depth). The report does not conflate marketing copy with architectural documentation.",
+          "type": "quality"
+        },
+        {
+          "name": "no_overclaimed_internal_architecture",
+          "description": "This is the primary test of this eval. The report must NOT: (1) state exact Salesforce object or field names as facts without a documented source, (2) name the specific LLM provider powering Piper as fact if not publicly confirmed, (3) claim a zero-retention training policy for either product without a cited DPA or privacy FAQ, (4) state specific API call sequences or data flow timings as facts. Any of these without a cited source is a failure of this assertion.",
+          "type": "quality"
+        },
+        {
+          "name": "evidence_calibration_on_sensitive_claims",
+          "description": "Compliance posture (SOC 2, GDPR, CCPA), training data policies, and pricing figures are either cited with a specific public source or explicitly hedged. The report does not state 'SOC 2 certified' or 'zero-retention policy' for either product without a traceable citation.",
+          "type": "quality"
+        },
+        {
+          "name": "executive_readability",
+          "description": "The report leads with strategic implications. A CPO could read only the Executive Summary and Headline Takeaways in Section 2 and come away with an accurate, defensible picture.",
+          "type": "quality"
+        },
+        {
+          "name": "defensible_roadmap_threat",
+          "description": "Section 6 roadmap threats are explicitly classified as [Shipped], [Announced], [Signal-based], or [Strategic Interpretation]. No threat based purely on strategic inference is presented as confirmed fact. The Salesforce acquisition of Qualified, if mentioned, is characterized accurately (confirmed vs. implications still unfolding).",
+          "type": "quality"
+        },
+        {
+          "name": "agent_capability_model_coverage",
+          "description": "Both PathFactory ChatFactory (AI buying agent) and Qualified PiperX (AI SDR agent) are agent-based products. For each, the report must explicitly name the major capability surfaces as distinct items — not summarize them only as 'conversion' or 'pipeline.' The report must describe how those capabilities connect into an operating loop and state the autonomy boundary for each agent. This is the primary test for this eval: a reader should finish Section 3 knowing exactly what each agent can do on its own vs. where a human steps in.",
+          "type": "quality"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Run a full competitive deep-dive on HubSpot Sales Hub vs Salesloft vs Outreach. Here are some pages to start with: https://www.hubspot.com/products/sales, https://www.salesloft.com/platform/, https://www.outreach.io/platform. I'm preparing a PM strategy session and need full technical depth.",
+      "expected_output": "A full 7-section deep product analysis report covering all three companies. An Executive Summary of 4-8 bullets appears before Section 1. Section 2 contains all three layers with full Headline Takeaways and complete sub-bullet detail — adapted layer names may be appropriate for sales engagement platforms (e.g., Sequence & Execution Engine / Intelligence & Optimization Layer / CRM Sync & Reporting Layer). Section 3 is a full step-by-step execution walkthrough with [Verified] / [Inferred] labels on mechanisms. Section 5 covers all four migration friction dimensions with named observable dependencies per company. Section 6 includes full threat classification rationale. Feature matrix covers all three companies. Citations Appendix is fully populated. The report serves as a PM working document with full technical depth.",
+      "assertions": [
+        {
+          "name": "all_7_sections_present",
+          "description": "The report contains all 7 numbered sections",
+          "type": "structural"
+        },
+        {
+          "name": "executive_summary_always_present",
+          "description": "An Executive Summary of 4-8 bullets appears before Section 1, covering core takeaway, where each company wins, biggest strategic risk with signal type, and recommendation.",
+          "type": "structural"
+        },
+        {
+          "name": "citations_appendix_populated",
+          "description": "Section 7 (Citations Appendix) exists and contains URLs for HubSpot Sales Hub, Salesloft, and Outreach with source types noted",
+          "type": "structural"
+        },
+        {
+          "name": "feature_matrix_covers_all_companies",
+          "description": "The feature matrix contains columns for all three companies: HubSpot Sales Hub, Salesloft, and Outreach",
+          "type": "structural"
+        },
+        {
+          "name": "deep_mode_full_technical_depth",
+          "description": "Section 2 contains complete layer breakdowns for each company with full sub-bullets — not collapsed to 2-4 bullets per layer. Section 3 is a complete numbered execution walkthrough with specific mechanism names and [Verified]/[Inferred] labels. Section 5 covers all four migration dimensions (data lock-in, integration entanglement, workflow dependency, migration effort) with named specific dependencies, not generic reasoning. The report would serve as a usable PM working document.",
+          "type": "quality"
+        },
+        {
+          "name": "fact_inference_separation",
+          "description": "Section 2 and Section 3 distinguish between verified documented facts and inferred architectural behaviors throughout, using appropriate hedged language for inferences.",
+          "type": "quality"
+        },
+        {
+          "name": "no_overclaimed_internal_architecture",
+          "description": "The report does not state internal implementation details (exact CRM object names, internal model identities, specific API call sequences) as verified facts without cited sources.",
+          "type": "quality"
+        },
+        {
+          "name": "evidence_calibration_on_sensitive_claims",
+          "description": "Governance, compliance, pricing, and migration timeline claims are sourced or appropriately hedged.",
+          "type": "quality"
+        },
+        {
+          "name": "defensible_roadmap_threat",
+          "description": "Section 6 roadmap threats carry explicit signal type classifications. Full depth in Section 6 includes complete rationale for each classification, not just a label.",
+          "type": "quality"
+        },
+        {
+          "name": "agent_capability_model_coverage",
+          "description": "HubSpot Sales Hub, Salesloft, and Outreach each have AI copilot or AI assistant capabilities. For any product positioned as an AI copilot, assistant, or agent, the report must name the major AI capability surfaces explicitly and describe how they connect into a workflow — not reduce them to 'AI-powered' or 'intelligent automation.' The autonomy boundary (what the AI does vs. what the rep initiates) must be stated. This appears as an 'Agent Operating Model' sub-section in Section 3.",
+          "type": "quality"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "Run a full architectural deep-dive on Gong vs Chorus (ZoomInfo) vs Clari. Seed URLs: https://www.gong.io/product/, https://chorus.ai/product/, https://www.clari.com/platform/. I'm preparing a PM strategy session and need full technical depth.",
+      "expected_output": "A 7-section deep product analysis report with full depth across all sections. An Executive Summary of 4-8 bullets appears before Section 1. Note: this product category may warrant adapted layer names (e.g., Data Capture Layer / Analysis & Intelligence Engine / Workflow & Action Layer for revenue intelligence tools). Section 2 contains all three layers with full Headline Takeaways and complete sub-bullet detail. Section 3 is a full step-by-step execution walkthrough (10+ steps if needed) with [Verified] / [Inferred] labels on mechanisms. Section 5 covers all four migration friction dimensions with named observable dependencies per company. Section 6 includes full threat classification rationale. Feature matrix covers all three companies. Citations Appendix is fully populated. The report is not collapsed into executive-summary-style brevity — a PM should be able to use this as a working document.",
+      "assertions": [
+        {
+          "name": "all_7_sections_present",
+          "description": "The report contains all 7 numbered sections",
+          "type": "structural"
+        },
+        {
+          "name": "executive_summary_always_present",
+          "description": "An Executive Summary of 4-8 bullets appears before Section 1, covering core takeaway, where each company wins, biggest strategic risk with signal type, and recommendation.",
+          "type": "structural"
+        },
+        {
+          "name": "citations_appendix_populated",
+          "description": "Section 7 (Citations Appendix) exists and contains URLs for Gong, Chorus, and Clari with source types noted",
+          "type": "structural"
+        },
+        {
+          "name": "feature_matrix_covers_all_companies",
+          "description": "The feature matrix contains columns for all three companies: Gong, Chorus (ZoomInfo), and Clari",
+          "type": "structural"
+        },
+        {
+          "name": "deep_mode_full_technical_depth",
+          "description": "Section 2 contains complete Layer 1, Layer 2, and Layer 3 breakdowns for each company with full sub-bullets — not collapsed to 2-4 bullets per layer. Section 3 is a complete numbered execution walkthrough with specific mechanism names and [Verified]/[Inferred] labels. Section 5 covers all four migration dimensions (data lock-in, integration entanglement, workflow dependency, migration effort) with named specific dependencies, not generic reasoning. The report would serve as a usable PM working document, not just an executive overview.",
+          "type": "quality"
+        },
+        {
+          "name": "fact_inference_separation",
+          "description": "Section 2 and Section 3 distinguish between verified documented facts and inferred architectural behaviors throughout, using appropriate hedged language for inferences.",
+          "type": "quality"
+        },
+        {
+          "name": "no_overclaimed_internal_architecture",
+          "description": "Despite the depth of analysis, the report does not state internal implementation details (exact CRM object names, internal model identities, specific API call sequences) as verified facts without cited sources.",
+          "type": "quality"
+        },
+        {
+          "name": "evidence_calibration_on_sensitive_claims",
+          "description": "Governance, compliance, pricing, and migration timeline claims are sourced or appropriately hedged. Full technical depth does not license unsupported precision.",
+          "type": "quality"
+        },
+        {
+          "name": "defensible_roadmap_threat",
+          "description": "Section 6 roadmap threats carry explicit signal type classifications. Full depth in Section 6 includes complete rationale for each classification, not just a label.",
+          "type": "quality"
+        }
+      ],
+      "files": []
+    }
+  ]
+}

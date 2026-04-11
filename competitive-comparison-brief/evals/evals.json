@@ -1,0 +1,232 @@
+{
+  "skill_name": "competitive-comparison-brief",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write a competitive comparison brief on Seismic vs Highspot. Seed URLs: https://seismic.com/platform/, https://www.highspot.com/product/. This is for our product team to understand the capability differences before a strategy session.",
+      "expected_output": "A competitive comparison brief with Bottom Line (2-4 sentences, strategic insight), Executive Summary (4-6 bullets covering what each product is optimized for, where each wins, biggest strategic implication with signal type, and recommendation), and all 7 numbered sections. Section 1 frames what these products are actually competing on (e.g., content governance + AI recommendations vs. guided selling + rep coaching). Section 2 includes a side-by-side comparison table with decision-relevant rows for content enablement. Section 3 names each product's major capability surfaces explicitly as distinct items — not collapsed into 'content enablement' or 'sales readiness.' Section 4 concretely differentiates the workflow each product drives. Section 5 gives specific conditions where each wins. Section 6 includes a strategic implication with signal type language. Section 7 is a direct recommendation. Sources section is populated. The brief is formatted cleanly — short paragraphs, bullets, readable whitespace — not dense prose.",
+      "assertions": [
+        {
+          "name": "required_brief_structure_present",
+          "description": "The brief contains: Bottom Line, Executive Summary, Section 1 (What These Products Are Really Competing On), Section 2 (Side-by-Side Product Comparison table), Section 3 (Capability Breakdown), Section 4 (Workflow Difference), Section 5 (Where Each Wins), Section 6 (Strategic Implication), Section 7 (Recommendation / Takeaway), and Sources.",
+          "type": "structural"
+        },
+        {
+          "name": "bottom_line_present",
+          "description": "A Bottom Line section is present before the Executive Summary, 2-4 sentences, leads with the core strategic insight rather than summarizing what the brief contains.",
+          "type": "structural"
+        },
+        {
+          "name": "executive_summary_present",
+          "description": "An Executive Summary of 4-6 bullets is present. It explicitly states what each product is primarily optimized for, where each clearly wins, the biggest strategic implication (with signal type noted), and a recommendation.",
+          "type": "structural"
+        },
+        {
+          "name": "comparison_table_present",
+          "description": "Section 2 contains a comparison table with at least 7 rows covering decision-relevant dimensions for both Seismic and Highspot as columns.",
+          "type": "structural"
+        },
+        {
+          "name": "fact_vs_inference_separation",
+          "description": "Architectural claims in Sections 2 and 3 distinguish between what is documented (cited or from official sources) and what is inferred from product behavior or marketing. Inferred claims use appropriately hedged language ('appears to,' 'based on documented behavior,' 'suggests') rather than stating them as verified facts.",
+          "type": "quality"
+        },
+        {
+          "name": "no_overclaimed_internal_architecture",
+          "description": "The brief does not state internal implementation details — such as exact AI model identities, specific data pipeline sequences, exact API field names, or internal routing logic — as verified facts without cited sources. Where such details are not publicly documented, the report uses 'Proprietary / Not Publicly Disclosed' or explicitly frames the claim as inferred.",
+          "type": "quality"
+        },
+        {
+          "name": "capability_breakdown_explicit",
+          "description": "Section 3 names each product's major capability surfaces as distinct, explicit items — not collapsed into category labels like 'content enablement platform' or 'sales readiness tool.' A reader finishing Section 3 should be able to list 4+ distinct capability surfaces for each product.",
+          "type": "quality"
+        },
+        {
+          "name": "clean_internal_brief_formatting",
+          "description": "The brief uses short paragraphs, bullets where useful, and readable whitespace. No section contains a dense wall of text. The document could be shared internally with a PM or product leadership team and read quickly. It does not read like raw research notes.",
+          "type": "quality"
+        },
+        {
+          "name": "signal_type_in_strategic_implication",
+          "description": "Section 6 applies signal type language (Shipped, Announced, Signal-based, or Strategic Interpretation) to at least one near-term implication or threat claim. Strategic interpretations are not presented as confirmed facts.",
+          "type": "quality"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Write a competitive comparison brief on PathFactory ChatFactory vs Qualified Piper. Seed URLs: https://www.pathfactory.com/platform/chatfactory/, https://www.qualified.com/platform, https://www.qualified.com/. I need this for a PM strategy session — both products are AI agent platforms and I need to understand how their operating models actually differ.",
+      "expected_output": "A competitive comparison brief that explicitly treats both products as agent-based and preserves their operating capability models. Bottom Line and Executive Summary are present. Section 1 frames the real comparison: buyer self-education vs. pipeline conversion, or content-native AI vs. agentic SDR. Section 2 includes a table with agent-relevant dimensions (autonomy level, channels covered, CRM relationship, workflow orientation). Section 3 is the critical test: both ChatFactory and Piper must have their core capability surfaces named explicitly as distinct items — not collapsed into 'conversion' or 'pipeline.' For Piper specifically: web chat, autonomous email, meeting scheduling, offers, and agentic nurture should each appear as named capability surfaces with an explanation of how they connect into an operating loop and where humans remain in the loop. For ChatFactory: content RAG, conversational Q&A, lead capture, content recommendations, AI Actions, and topic cards should each be named. Section 4 concretely contrasts the two buyer journey workflows. Section 5 gives specific conditions for each. Section 6 addresses the M&A context (Salesforce acquisition of Qualified, Kaltura acquisition of PathFactory) with appropriate signal types. Section 7 ends with a direct recommendation.",
+      "assertions": [
+        {
+          "name": "required_brief_structure_present",
+          "description": "The brief contains all required sections: Bottom Line, Executive Summary, Sections 1-7, and Sources.",
+          "type": "structural"
+        },
+        {
+          "name": "bottom_line_present",
+          "description": "A Bottom Line section is present before the Executive Summary, 2-4 sentences, leads with the core strategic insight.",
+          "type": "structural"
+        },
+        {
+          "name": "executive_summary_present",
+          "description": "An Executive Summary of 4-6 bullets is present covering what each product is optimized for, where each clearly wins, biggest strategic implication with signal type, and a recommendation.",
+          "type": "structural"
+        },
+        {
+          "name": "comparison_table_present",
+          "description": "Section 2 contains a comparison table with agent-relevant dimensions including at minimum: primary outcome, main channels/surfaces, AI grounding/data foundation, CRM relationship, and autonomy level or workflow orientation.",
+          "type": "structural"
+        },
+        {
+          "name": "agent_capability_model_coverage",
+          "description": "This is the primary assertion for this eval. Both ChatFactory and Piper are agent-based products. For each, Section 3 must: (1) name the major capability surfaces as distinct, explicitly listed items — not collapse them into 'pipeline' or 'content'; (2) describe how those capabilities connect into an operating loop; (3) state the autonomy boundary — what each agent does autonomously vs. what requires human initiation or handoff. For Piper specifically: web conversation, email outreach, meeting scheduling, offers, and nurture should each be present as named capabilities. A reader finishing Section 3 should know exactly what each agent does and where it stops.",
+          "type": "quality"
+        },
+        {
+          "name": "fact_vs_inference_separation",
+          "description": "Capability claims in Section 3 distinguish between what is documented from official sources and what is inferred from product behavior or marketing. Agent capability claims that are not verifiable from official documentation are appropriately hedged.",
+          "type": "quality"
+        },
+        {
+          "name": "no_overclaimed_internal_architecture",
+          "description": "The brief does not state exact Salesforce object schemas, internal LLM provider identities, specific CRM field names, exact RAG pipeline details, or training data policies as verified facts without cited sources.",
+          "type": "quality"
+        },
+        {
+          "name": "ma_context_signal_classified",
+          "description": "Section 6 addresses the M&A context (Salesforce acquisition of Qualified; Kaltura acquisition of PathFactory) with signal types applied appropriately. Confirmed acquisitions are noted as such; downstream integration implications are classified as [Announced] or [Strategic Interpretation] — not stated as confirmed roadmap facts.",
+          "type": "quality"
+        },
+        {
+          "name": "workflow_difference_concrete",
+          "description": "Section 4 concretely differentiates how a buyer journey unfolds differently in ChatFactory vs. Piper — including what triggers engagement, what the product does autonomously next, and where human handoff occurs. It is not a repeat of Section 3 bullet points.",
+          "type": "quality"
+        },
+        {
+          "name": "clean_internal_brief_formatting",
+          "description": "The brief is formatted cleanly with readable whitespace and no dense walls of text. Despite the agent complexity, it remains shareable internally without modification.",
+          "type": "quality"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Give me a competitive comparison brief on Outreach vs Salesloft. No seed URLs — use what you can find publicly. My team is evaluating which one to recommend to a prospect who is mid-market and Salesforce-heavy.",
+      "expected_output": "A competitive comparison brief acknowledging at the top that no seed URLs were provided and that architectural findings are based on public web research. Bottom Line and Executive Summary are present. Section 1 frames what Outreach and Salesloft are really competing on (e.g., pipeline execution depth vs. revenue workflow orchestration, or similar — the real distinction a Salesforce-heavy mid-market prospect would care about). Section 2 includes a comparison table with dimensions relevant to a Salesforce-native evaluation (CRM depth, sequence execution, AI capabilities, admin overhead). Section 3 names each product's major capability surfaces explicitly — not just 'sales engagement platform.' Section 4 concretely differentiates how a rep's workflow differs in each product. Sections 5-7 are direct and specific for a mid-market Salesforce-heavy evaluation context. All architectural claims in Sections 2-3 use appropriately hedged language given the absence of seed URLs. Sources section is populated with public sources.",
+      "assertions": [
+        {
+          "name": "required_brief_structure_present",
+          "description": "The brief contains all required sections: Bottom Line, Executive Summary, Sections 1-7, and Sources.",
+          "type": "structural"
+        },
+        {
+          "name": "no_seed_urls_acknowledged",
+          "description": "The brief acknowledges prominently at the top (in a note or within the introduction) that no seed URLs were provided and that all architectural findings are based on public web research — with a note that internal implementation details are characterized as inferences rather than verified facts.",
+          "type": "structural"
+        },
+        {
+          "name": "bottom_line_present",
+          "description": "A Bottom Line section is present before the Executive Summary, 2-4 sentences, leads with the core strategic insight for a Salesforce-heavy mid-market context.",
+          "type": "structural"
+        },
+        {
+          "name": "executive_summary_present",
+          "description": "An Executive Summary of 4-6 bullets is present covering what each product is optimized for, where each clearly wins, biggest strategic implication with signal type, and a recommendation.",
+          "type": "structural"
+        },
+        {
+          "name": "comparison_table_present",
+          "description": "Section 2 contains a comparison table with at least 7 rows covering dimensions relevant to a Salesforce-heavy mid-market evaluation — both Outreach and Salesloft appear as columns.",
+          "type": "structural"
+        },
+        {
+          "name": "fact_vs_inference_separation",
+          "description": "Because no seed URLs were provided, Sections 2 and 3 use appropriately hedged language for architectural claims throughout. The brief does not present inferred internal implementation details — such as exact Salesforce object schemas, internal AI model architectures, or specific routing logic — as verified facts. Architecture is characterized at the behavior or pattern level ('appears to use,' 'based on documented product behavior') rather than the internal implementation level.",
+          "type": "quality"
+        },
+        {
+          "name": "no_overclaimed_internal_architecture",
+          "description": "Without seed URLs, the brief avoids stating precise internal architecture details as verified facts. Claims about CRM integration depth, AI capabilities, and pipeline logic are sourced from public documentation or explicitly flagged as inferred.",
+          "type": "quality"
+        },
+        {
+          "name": "audience_context_reflected",
+          "description": "The brief reflects the stated evaluation context: mid-market, Salesforce-heavy prospect. Section 5 (Where Each Wins) and Section 7 (Recommendation) speak specifically to this context rather than giving generic platform-level guidance.",
+          "type": "quality"
+        },
+        {
+          "name": "capability_breakdown_explicit",
+          "description": "Section 3 names each product's major capability surfaces as distinct, explicit items — not collapsed into 'sales engagement platform.' A reader finishing Section 3 should be able to identify at least 4 distinct capability surfaces per product.",
+          "type": "quality"
+        },
+        {
+          "name": "clean_internal_brief_formatting",
+          "description": "The brief uses short paragraphs, bullets where useful, and readable whitespace. No section contains a dense wall of text. It reads like a polished internal comparison document, not raw research notes.",
+          "type": "quality"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Write a competitive comparison brief on HubSpot Marketing Hub vs Adobe Marketo for our VP of Marketing. Seed URLs: https://www.hubspot.com/products/marketing, https://business.adobe.com/products/marketo/adobe-marketo.html. She needs to understand the strategic differences before a vendor decision meeting.",
+      "expected_output": "A competitive comparison brief appropriate for a VP of Marketing audience. Bottom Line and Executive Summary are present and written with strategic clarity — not PM-specific jargon. Section 1 frames what these products are really competing on for the marketing buyer (e.g., all-in-one growth suite vs. enterprise MAP depth; ease of use vs. CRM flexibility). Section 2 includes a comparison table with marketing-relevant dimensions: lead scoring, nurture automation, CRM alignment, reporting depth, AI personalization, onboarding/admin complexity, and pricing model. Section 3 names each product's major capability surfaces explicitly — not just 'marketing automation platform.' Section 4 concretely differentiates how marketing workflows differ between the two. Section 5 gives specific conditions with the VP's decision context in mind. Section 6 includes strategic implications for a CMO/VP decision. Section 7 ends with a direct recommendation that helps the VP make a call — not a hedged 'it depends' conclusion unless the evidence genuinely requires it. The tone throughout is strategic and product-literate — appropriate for a senior executive but not dumbed down.",
+      "assertions": [
+        {
+          "name": "required_brief_structure_present",
+          "description": "The brief contains all required sections: Bottom Line, Executive Summary, Sections 1-7, and Sources.",
+          "type": "structural"
+        },
+        {
+          "name": "bottom_line_present",
+          "description": "A Bottom Line section is present before the Executive Summary, 2-4 sentences, leads with the core strategic insight at a level appropriate for a VP of Marketing — not PM-specific architectural detail.",
+          "type": "structural"
+        },
+        {
+          "name": "executive_summary_present",
+          "description": "An Executive Summary of 4-6 bullets is present covering what each product is optimized for, where each clearly wins, biggest strategic implication with signal type, and a recommendation.",
+          "type": "structural"
+        },
+        {
+          "name": "comparison_table_present",
+          "description": "Section 2 contains a comparison table with dimensions that a VP of Marketing would find decision-relevant — at minimum: primary outcome, AI/personalization capabilities, CRM relationship, admin complexity, and pricing model structure.",
+          "type": "structural"
+        },
+        {
+          "name": "leadership_appropriate_tone",
+          "description": "The brief is written at a strategic level appropriate for a VP of Marketing. It does not use PM-specific jargon without explanation, does not lead with internal implementation details, and frames capability differences in terms of marketing outcomes and strategic tradeoffs rather than technical architecture. A VP of Marketing should be able to read this and make a vendor decision without requiring additional translation.",
+          "type": "quality"
+        },
+        {
+          "name": "fact_vs_inference_separation",
+          "description": "Sections 2 and 3 distinguish between what is documented from official sources and what is inferred from product behavior. Claims about AI personalization depth, lead scoring internals, and CRM integration behavior are sourced or appropriately hedged — not asserted as verified facts without a cited source.",
+          "type": "quality"
+        },
+        {
+          "name": "no_overclaimed_internal_architecture",
+          "description": "The brief does not state internal AI model identities, exact data pipeline architectures, specific Salesforce/CRM object configurations, or training data policies as verified facts without cited sources. Where details are not publicly documented, the report uses 'Proprietary / Not Publicly Disclosed' or hedged language.",
+          "type": "quality"
+        },
+        {
+          "name": "recommendation_direct_and_opinionated",
+          "description": "Section 7 ends with a direct recommendation or clear decision lens — not a generic 'it depends' conclusion. If the evidence is genuinely mixed, it says so directly and names exactly what information would change the recommendation. A VP of Marketing reading Section 7 should come away knowing what to do or what to watch for.",
+          "type": "quality"
+        },
+        {
+          "name": "capability_breakdown_explicit",
+          "description": "Section 3 names each product's major capability surfaces as distinct, explicit items — not collapsed into 'marketing automation platform.' A reader finishing Section 3 should be able to identify at least 4 distinct capability surfaces per product with an understanding of how they connect.",
+          "type": "quality"
+        },
+        {
+          "name": "clean_internal_brief_formatting",
+          "description": "The brief uses short paragraphs, bullets where useful, and readable whitespace. No section contains a dense wall of text. It reads like a polished internal document appropriate for sharing directly with a VP — not raw research notes or an academic analysis.",
+          "type": "quality"
+        }
+      ],
+      "files": []
+    }
+  ]
+}
