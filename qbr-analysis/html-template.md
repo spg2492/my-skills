@@ -23,7 +23,8 @@ The output file must be a single self-contained HTML file. All styles must be in
 | Body text | `#1e293b` |
 | Sticky bar background | `#0d2d5e` |
 | Modern experience tile | background `#f0fdf4`, border `#86efac` |
-| Legacy experience tile | background `#fff5f5`, border `#fca5a5` |
+| Classic experience tile | background `#fff5f5`, border `#fca5a5` |
+| Always-on / RI tile | background `#f0f9ff`, border `#7dd3fc` |
 
 ---
 
@@ -95,7 +96,7 @@ h2.section-title .num { background: #0d2d5e; color: #fff; border-radius: 50%; wi
 .card-blue h3   { color: #1e40af; margin: 0 0 8px; font-size: 15px; }
 .card-green p, .card-orange p, .card-blue p { margin: 8px 0 0; font-size: 14px; line-height: 1.65; }
 
-/* Experience tiles — modern vs legacy visual distinction */
+/* Experience tiles — modern vs classic vs always-on/RI visual distinction */
 .exp-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 8px; }
 @media (max-width: 640px) { .exp-strip { grid-template-columns: 1fr; } }
 .exp-tile { border-radius: 8px; padding: 16px; border: 1px solid #e2e8f0; }
@@ -103,10 +104,15 @@ h2.section-title .num { background: #0d2d5e; color: #fff; border-radius: 50%; wi
 .exp-tile .exp-name  { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
 .exp-tile .exp-row   { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; }
 .exp-tile .exp-row .val { font-weight: 600; }
-.exp-tile.legacy { background: #fff5f5; border-color: #fca5a5; }
-.exp-tile.modern { background: #f0fdf4; border-color: #86efac; }
-.exp-tile.legacy .exp-label { color: #991b1b; }
-.exp-tile.modern .exp-label { color: #166534; }
+.exp-tile.classic { background: #fff5f5; border-color: #fca5a5; }
+.exp-tile.modern  { background: #f0fdf4; border-color: #86efac; }
+.exp-tile.always-on { background: #f0f9ff; border-color: #7dd3fc; }
+.exp-tile.classic .exp-label    { color: #991b1b; }
+.exp-tile.modern .exp-label     { color: #166534; }
+.exp-tile.always-on .exp-label  { color: #0369a1; }
+
+/* Insight block two-column split */
+.insight-half { min-width: 0; }
 
 /* Tables */
 table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
@@ -165,7 +171,7 @@ h3.sub-heading { font-size: 15px; font-weight: 700; color: #0d2d5e; margin: 28px
 ```
 [Sticky KPI Bar] ← fixed, hidden until user scrolls past main KPI bar
 [Header]
-[Platform Maturity Callout] ← optional, only if maturity signal is notable
+[Platform Maturity Callout] ← optional; include only when the mix of modern vs Classic Experience usage is a meaningful part of the story
 [KPI Bar] ← id="kpi-bar", triggers sticky bar visibility
 [Executive Summary]
 [Where You're Seeing Value — 3 cards, 2-column grid]
@@ -230,6 +236,23 @@ obs.observe(kpiBar);
 
 ---
 
+## Platform Maturity Callout (Optional)
+
+Include this block only when the mix of modern vs Classic Experience usage is a meaningful part of the QBR story — for example, when Classic Experiences are carrying most of the traffic, when the customer has recently adopted modern modules, or when a modernization recommendation is central to the narrative.
+
+Use a subdued banner style that appears between the header and the KPI bar. Keep the message to one sentence — it should surface the headline signal, not explain all the evidence.
+
+```html
+<!-- PLATFORM MATURITY CALLOUT — include only when relevant -->
+<div style="background:#fef9c3; border-left:4px solid #ca8a04; padding:14px 24px; font-size:14px; color:#713f12;">
+  <strong>Platform note:</strong> [One-sentence framing of the maturity signal — e.g. "Most traffic this period came through Classic Experiences — see experience performance for modernization opportunities." or "Adoption of Content Playlists and Templated Experiences increased this quarter, reflecting a stronger modern campaign motion."]
+</div>
+```
+
+Do not include this block if the experience mix is unremarkable or if the data does not clearly support a maturity narrative.
+
+---
+
 ## KPI Bar
 
 6 key metrics displayed horizontally. Add `id="kpi-bar"` so the sticky bar IntersectionObserver can watch it.
@@ -252,6 +275,58 @@ The 6 KPIs to always include:
 4. Form Capture Rate
 5. Total Form Fills
 6. CTA Click Rate (fall back to Total Downloads if CTA data is unavailable)
+
+---
+
+## Customer Goals Scorecard (Optional)
+
+Include this block between the Executive Summary and the "Where You're Seeing Value" section when a QBR brief or customer context file was found. Omit entirely if no context files were present.
+
+Add this CSS to the `<style>` block:
+
+```css
+/* Goals scorecard */
+.goals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin-bottom: 8px; }
+.goal-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px 18px; }
+.goal-card .goal-title { font-size: 14px; font-weight: 700; color: #0d2d5e; margin: 0 0 8px; }
+.goal-card .goal-evidence { font-size: 13px; color: #475569; margin: 6px 0; line-height: 1.55; }
+.goal-card .goal-next { font-size: 13px; color: #0d2d5e; margin: 10px 0 0; padding-top: 8px; border-top: 1px solid #f1f5f9; }
+.goal-card .goal-next strong { font-weight: 600; }
+.badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 6px; }
+.badge-green  { background: #dcfce7; color: #166534; }
+.badge-amber  { background: #fef3c7; color: #92400e; }
+.badge-gray   { background: #f1f5f9; color: #475569; }
+```
+
+HTML template:
+
+```html
+<h2 class="section-title">Customer Goals Scorecard</h2>
+<hr class="section-rule">
+<p style="font-size:14px; color:#475569; margin: -8px 0 16px;">Based on goals defined in [context filename(s)]. Status reflects [QBR Period] data.</p>
+<div class="goals-grid">
+
+  <!-- One card per goal — repeat this block -->
+  <div class="goal-card">
+    <div class="goal-title">[Goal Name]</div>
+    <span class="badge [badge-green|badge-amber|badge-gray]">[✓ On Track | ⚠ In Progress | ✗ Not Yet Started]</span>
+    <div class="goal-evidence">[1–2 specific data points from the parsed data that support the status assessment]</div>
+    <div class="goal-next"><strong>Next step:</strong> [One actionable sentence tied to the data]</div>
+  </div>
+
+</div>
+```
+
+**Status badge rules:**
+- `badge-green` + "✓ On Track" — data shows clear, positive movement directly tied to this goal
+- `badge-amber` + "⚠ In Progress" — foundational work is underway or partial progress is visible, but outcome not yet achieved
+- `badge-gray` + "✗ Not Yet Started" — goal is stated but no activation or meaningful data signal exists yet
+
+**Writing rules for this section:**
+- Goal titles should be short (3–6 words), plain language — not copied verbatim from the brief if the original is too long or jargon-heavy
+- Evidence must come from the parsed data — never invented or inferred from context alone
+- Next step must be specific and directly actionable, not generic advice
+- Limit to 4–6 goal cards. If goals are very similar, combine them into one card rather than splitting
 
 ---
 
@@ -332,7 +407,7 @@ Immediately after each chart, include an insight block explaining what it shows 
 
 3. **Conversions by Content Type** — horizontal bar chart ranked by total conversions. Show views alongside conversions as a secondary bar. Hover shows content type, views, fills, conversion rate.
 
-4. **Experience Performance by Type** — grouped bar chart comparing visitor volume and form rate across experience types. Color-code modern vs legacy types.
+4. **Experience Performance by Type** — grouped bar chart comparing visitor volume and form rate across experience types and modules. Color-code by category: modern (green), Classic Experiences (amber/red), always-on / RI (blue).
 
 All chart JS must be self-contained in a single `<script>` block at end of body.
 
@@ -361,13 +436,13 @@ Used after every chart and inside collapsible detail tables. Split layout: left 
 
 ## Experience Tiles
 
-Visual comparison of experience types, color-coded modern vs legacy. Used before the collapsible tables.
+Visual comparison of experience types and modules, color-coded by category. Used before the collapsible tables. Only render tiles for modules where data is available.
 
 ```html
 <div class="exp-strip">
-  <div class="exp-tile [modern|legacy]">
-    <div class="exp-label">[🟢 Modern | 🔴 Legacy]</div>
-    <div class="exp-name">[Experience Type]</div>
+  <div class="exp-tile [modern|classic|always-on]">
+    <div class="exp-label">[🟢 Modern | 🟡 Classic | 🔵 Always-On / RI]</div>
+    <div class="exp-name">[Experience Type or Module]</div>
     <div class="exp-row"><span>Visitors</span><span class="val">[VALUE]</span></div>
     <div class="exp-row"><span>Visitors YoY</span><span class="val [delta-pos|delta-neg]">[▲/▼ VALUE]</span></div>
     <div class="exp-row"><span>Form Capture Rate</span><span class="val">[VALUE]</span></div>
@@ -378,7 +453,12 @@ Visual comparison of experience types, color-coded modern vs legacy. Used before
 </div>
 ```
 
-Content Playlists and Templated Experiences = `.modern`. Target, Recommend, Microsites = `.legacy`.
+**Tile classification:**
+- Content Playlists, Templated Experiences → `.modern` (🟢 Modern)
+- Target, Recommend, Microsites → `.classic` (🟡 Classic)
+- Website Tools, PFRI → `.always-on` (🔵 Always-On / RI)
+
+For Website Tools tiles, show: visitors (or sessions), engagement rate, and top recommendation click-through where data is available. For PFRI tiles, show: active buyers, active accounts or opportunities, and seller shares where data is available. Omit rows where data is not present rather than showing empty values.
 
 ---
 
@@ -413,6 +493,7 @@ All supporting data tables go inside `<details>` elements. Each collapses by def
 4. Topic Performance — topic, views, avg engagement, form fills (only if topic data exists)
 5. Industry Breakdown — industry, visitors, YoY delta
 6. Monthly Performance Snapshot — month, visitors, engagement rate, binge rate, form captures
+7. Pipeline & Revenue Influence — metric, value, YoY delta, notes (include form fills, CTA clicks, downloads, pipeline influenced, Closed Won attribution where available; include PFRI buyer/account/opportunity signals where PFRI data is present; omit this table entirely if no pipeline or revenue data is available)
 
 Use inline bars (`.tbar-wrap` / `.tbar`) in table cells to show proportional values visually.
 
@@ -467,8 +548,9 @@ Only render if gaps exist. Omit entirely if data was complete.
 
 ```html
 <footer style="margin-top:48px; padding-top:16px; border-top:1px solid #e2e8f0; font-size:13px; color:#6b7280;">
-  <p><strong>Data sources:</strong> [list files used]</p>
-  <p><strong>Missing data:</strong> [list any files not found, or "None"]</p>
+  <p><strong>Data sources:</strong> [list Excel files used]</p>
+  <p><strong>Missing data:</strong> [list any core Excel files not found and which sections were skipped, or "None"]</p>
+  <p><strong>Context inputs:</strong> [list any context files used and briefly how each shaped the report — e.g. "QBR goal (qbr-brief.md): renewal framing applied to narrative emphasis. Customer context (context.md): maturity level and active use cases used to prioritize recommendations." — or "None: report produced from data and user-provided context only."]</p>
   <p>Generated by QBR Analysis skill &nbsp;|&nbsp; [Date]</p>
 </footer>
 ```

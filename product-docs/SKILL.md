@@ -98,17 +98,19 @@ Then ask: "Would you like me to adjust the tone, expand any section, or add more
 
 After the article is finalised, generate a Word document automatically:
 
-1. Write the full article as an HTML file to `~/pm-playground/product-docs/[feature-slug].html`, using clean inline styles (Arial font, appropriate heading sizes, paragraph spacing). Where screenshots were captured, insert `<img src="[screenshot-path]">` tags after each corresponding numbered step in "How to Use It".
+1. Create a folder for the feature at `~/pm-playground/product-docs/[feature-slug]/` using `mkdir -p`. All files for this feature — HTML, Word document, and screenshots — live inside this folder.
 
-2. Run the Python script at `~/.claude/skills/product-docs/inject-images.py` to:
+2. Write the full article as an HTML file to `~/pm-playground/product-docs/[feature-slug]/[feature-slug].html`, using clean inline styles (Arial font, appropriate heading sizes, paragraph spacing). Where screenshots were captured, insert `<img src="[screenshot-path]">` tags after each corresponding numbered step in "How to Use It".
+
+3. Run the Python script at `~/.claude/skills/product-docs/inject-images.py` to:
    - Read the HTML and convert it to a base `.docx` using `textutil -convert docx`
    - Open the `.docx` as a zip, locate the "How to Use It" steps in `word/document.xml`
    - Inject a `<w:drawing>` image paragraph after each numbered step using the corresponding screenshot file
    - Add the image files to `word/media/` and register their relationships in `word/_rels/document.xml.rels`
-   - Write the final file to `~/pm-playground/product-docs/[feature-slug]-final.docx`
+   - Write the final file to `~/pm-playground/product-docs/[feature-slug]/[feature-slug].docx`
 
-3. Open the final `.docx` automatically so the user can review it.
+4. Open the final `.docx` automatically so the user can review it.
 
 If screenshots were not captured, skip the image injection and generate the `.docx` from the HTML as-is (textutil only).
 
-The inject-images script template lives at `~/.claude/skills/product-docs/inject-images.py`. When running it for a new feature, update `DOCX_IN`, `DOCX_OUT`, `SCREENSHOTS_DIR`, and the `IMAGES` list to match the current feature's file names before executing.
+The inject-images script template lives at `~/.claude/skills/product-docs/inject-images.py`. When running it for a new feature, update `DOCX_IN`, `DOCX_OUT`, `SCREENSHOTS_DIR`, and the `STEP_IMAGES` dict (mapping each step number that has a screenshot to its filename — omit steps with no screenshot) before executing.
