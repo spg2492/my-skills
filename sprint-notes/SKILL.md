@@ -37,10 +37,13 @@ Skip all other tickets silently.
 
 ## Step 2: Extract what matters
 
+When fetching each ticket, always request these fields: `summary`, `status`, `customfield_24235` (Story — contains user story, description, use cases, and workflow), `customfield_24081` (Acceptance Criteria), `customfield_10008` (Epic Link). The `description` system field is not used in this Jira instance.
+
 From the tickets, pull:
 - Summary / ticket title
-- Description (especially the user story and acceptance criteria)
-- Epic name (for grouping)
+- Story (`customfield_24235`) — user story, use cases, description, workflow
+- Acceptance Criteria (`customfield_24081`)
+- Epic name (for grouping, via `customfield_10008`)
 - Status
 
 Ignore internal fields: story points, sprint names, assignees, technical implementation details.
@@ -88,9 +91,9 @@ Then do the following in order:
 
 3. **Publish to Confluence** — create a new page using the Atlassian MCP:
    - Tool: `mcp__claude_ai_Atlassian__createConfluencePage`
-   - Cloud ID: `ab6df8ae-4b9f-4660-b2ba-96c2c38c2c86`
+   - Cloud ID: `9cebaf06-de33-468b-b9eb-8c450353db6b`
    - Space key: `PRG`
-   - Parent page ID: `5115740165`
+   - Parent page ID: `6417513841`
    - Title: `Release Notes — [Sprint Name]` (e.g., `Release Notes — Sprint 43`)
    - Content: full release notes formatted as HTML
    - Share the resulting Confluence page URL with the user so they can send it to the marketing team.
